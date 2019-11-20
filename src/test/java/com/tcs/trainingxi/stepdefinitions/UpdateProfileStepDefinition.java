@@ -2,11 +2,13 @@ package com.tcs.trainingxi.stepdefinitions;
 
 import com.tcs.trainingxi.exceptions.FieldsExeption;
 import com.tcs.trainingxi.models.Credentials;
+import com.tcs.trainingxi.models.builders.CredentialsBuilder;
 import com.tcs.trainingxi.questions.Enabled;
 import com.tcs.trainingxi.questions.Field;
 import com.tcs.trainingxi.questions.GetMaxLength;
 import com.tcs.trainingxi.task.Edit;
 import com.tcs.trainingxi.task.Login;
+import com.tcs.trainingxi.utils.PropsCsv;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -19,7 +21,9 @@ import net.thucydides.core.annotations.Managed;
 import org.hamcrest.Matchers;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import static com.tcs.trainingxi.userinterfaces.EditProfilePage.INPUT_FIELD;
 import static com.tcs.trainingxi.utils.constans.MessageException.*;
@@ -29,6 +33,8 @@ import static org.hamcrest.Matchers.is;
 
 
 public class UpdateProfileStepDefinition {
+
+    public static Credentials credentials;
 
     @Managed
     private WebDriver hisBrowser;
@@ -42,9 +48,9 @@ public class UpdateProfileStepDefinition {
     }
 
     @Given("^The user login on the page$")
-    public void theUserLoginOnThePage(List<Credentials> credentialsList) {
-        OnStage.theActorInTheSpotlight().wasAbleTo(Login.inThePage(credentialsList.get(0).getUsserName(),
-                credentialsList.get(0).getPassword()));
+    public void theUserLoginOnThePage(List<Map<String,String>> credentialsList)throws IOException {
+        credentials= CredentialsBuilder.credentialInformation(PropsCsv.getDataCsv("Credentials",credentialsList.get(0).get("id"))).build();
+        OnStage.theActorInTheSpotlight().wasAbleTo(Login.inThePage(credentials));
     }
 
     @When("^The user edits his profile$")

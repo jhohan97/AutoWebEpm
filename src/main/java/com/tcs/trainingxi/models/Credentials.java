@@ -1,12 +1,14 @@
 package com.tcs.trainingxi.models;
 
+import com.tcs.trainingxi.models.builders.CredentialsBuilder;
+
 public class Credentials {
     private String usserName;
     private String password;
 
-    public Credentials(String usserName, String password) {
-        this.usserName = usserName;
-        this.password = password;
+    public Credentials(CredentialsBuilder credentialsBuilder) {
+        this.usserName = credentialsBuilder.getCredentialsBuilders().get(0).getEmail();
+        this.password = credentialsBuilder.getCredentialsBuilders().get(0).getPassword();
     }
 
     public String getUsserName() {

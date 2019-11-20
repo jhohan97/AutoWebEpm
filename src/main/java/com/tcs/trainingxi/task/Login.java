@@ -1,6 +1,7 @@
 package com.tcs.trainingxi.task;
 
 import com.tcs.trainingxi.interaction.ChangePage;
+import com.tcs.trainingxi.models.Credentials;
 import com.tcs.trainingxi.userinterfaces.*;
 import com.tcs.trainingxi.utils.constans.Pages;
 import net.serenitybdd.screenplay.Actor;
@@ -11,12 +12,10 @@ import net.serenitybdd.screenplay.actions.Enter;
 
 public class Login implements Task {
 
-    private String usserName;
-    private String password;
+    private Credentials credentials;
 
-    public Login(String usserName, String password) {
-        this.usserName = usserName;
-        this.password = password;
+    public Login(Credentials credentials) {
+        this.credentials = credentials;
     }
 
     @Override
@@ -27,12 +26,12 @@ public class Login implements Task {
                 Click.on(WebCheckEpmPage.SEARCH_HERE),
                 ChangePage.in(Pages.FACTURA_WEB_EPM_INICIO),
                 Click.on(WebCheckStartPage.LOGIN_BUTTON),
-                Enter.theValue(usserName).into(WebCheckLoginPage.USSERNAME_IMPUT),
-                Enter.theValue(password).into(WebCheckLoginPage.PASSWORD_IMPUT),
+                Enter.theValue(credentials.getUsserName()).into(WebCheckLoginPage.USSERNAME_IMPUT),
+                Enter.theValue(credentials.getPassword()).into(WebCheckLoginPage.PASSWORD_IMPUT),
                 Click.on(WebCheckLoginPage.LOGIN_BUTTON));
     }
 
-    public static Login inThePage(String ussername, String password){
-        return Tasks.instrumented(Login.class,ussername,password);
+    public static Login inThePage(Credentials credentials){
+        return Tasks.instrumented(Login.class, credentials);
     }
 }

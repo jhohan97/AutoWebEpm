@@ -5,8 +5,8 @@ Feature: Update profile on EPM page
 
   Background: navegate to login page
     Given The user login on the page
-      | usserName              | Password     |
-      | marcomayo289@gmail.com | Contra123456 |
+      | id |
+      | 1  |
 
   Scenario Outline: Smoke test
     When  The user edits his profile
