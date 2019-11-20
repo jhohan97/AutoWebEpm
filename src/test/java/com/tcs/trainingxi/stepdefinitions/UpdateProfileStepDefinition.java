@@ -4,6 +4,7 @@ import com.tcs.trainingxi.exceptions.FieldsExeption;
 import com.tcs.trainingxi.models.Credentials;
 import com.tcs.trainingxi.questions.Enabled;
 import com.tcs.trainingxi.questions.Field;
+import com.tcs.trainingxi.questions.GetMaxLength;
 import com.tcs.trainingxi.task.Edit;
 import com.tcs.trainingxi.task.Login;
 import cucumber.api.java.Before;
@@ -21,8 +22,7 @@ import org.openqa.selenium.WebDriver;
 import java.util.List;
 
 import static com.tcs.trainingxi.userinterfaces.EditProfilePage.INPUT_FIELD;
-import static com.tcs.trainingxi.utils.constans.MessageException.FIELD_IS_ENABLED;
-import static com.tcs.trainingxi.utils.constans.MessageException.FIELD_IS_NOT_VISIBLE;
+import static com.tcs.trainingxi.utils.constans.MessageException.*;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -63,4 +63,9 @@ public class UpdateProfileStepDefinition {
                 Matchers.is(Matchers.equalTo(true))).orComplainWith(FieldsExeption.class, FIELD_IS_NOT_VISIBLE));
     }
 
+    @Then("^He cannot enter more data in the fields$")
+    public void heCannotEnterMoreDataInTheFields(List<String> target) {
+        OnStage.theActorInTheSpotlight().should(seeThat(GetMaxLength.field(INPUT_FIELD.of(target.get(2))),
+                is(equalTo(target.get(3)))).orComplainWith(FieldsExeption.class,FIELD_LENGHT));
+    }
 }

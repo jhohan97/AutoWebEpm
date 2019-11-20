@@ -7,7 +7,7 @@ Feature: Update profile on EPM page
     Given The user login on the page
       | usserName              | Password     |
       | marcomayo289@gmail.com | Contra123456 |
-@this
+
   Scenario Outline: Smoke test
     When  The user edits his profile
     Then He visualized all fields
@@ -38,16 +38,20 @@ Feature: Update profile on EPM page
       | txtCorreo             | true     |
       | txtIdentificacion     | true     |
 
+  @this
   Scenario Outline:
   Validate that the size of the fields: Names, Surname, address, telephone, cell phone, alternative email, have the capacity requested in the acceptance criteria.
     When  The user edits his profile
-    Then He cannot edit the fields of correo , tipo de documento y número de identificación
+    Then He cannot enter more data in the fields
       | Field   | Atribute   |
       | <Field> | <Atribute> |
     Examples:
-      | Field                 | Atribute |
-      | ddlTipoIdentificacion | true     |
-      | txtCorreo             | true     |
-      | txtIdentificacion     | true     |
+      | Field            | Atribute |
+      | txtNombres       | 100      |
+      | txtApellidos     | 100      |
+      | txtDireccion     | 200      |
+      | txtTelefono      | 50       |
+      | txtCelular       | 15       |
+      | txtCorreoAlterno | 100      |
 
 

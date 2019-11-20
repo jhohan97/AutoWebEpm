@@ -15,6 +15,7 @@ public class GetMaxLength implements Question {
 
     @Override
     public Object answeredBy(Actor actor) {
+        System.out.println(campo.resolveFor(actor).getAttribute("maxlength"));
         return campo.resolveFor(actor).getAttribute("maxlength");
     }
 
