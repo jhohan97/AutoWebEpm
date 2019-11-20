@@ -1,8 +1,9 @@
 package com.tcs.trainingxi.stepdefinitions;
 
-import com.tcs.trainingxi.exceptions.FieldIsEnabled;
+import com.tcs.trainingxi.exceptions.FieldsExeption;
 import com.tcs.trainingxi.models.Credentials;
 import com.tcs.trainingxi.questions.Enabled;
+import com.tcs.trainingxi.questions.Field;
 import com.tcs.trainingxi.task.Edit;
 import com.tcs.trainingxi.task.Login;
 import cucumber.api.java.Before;
@@ -14,12 +15,14 @@ import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.actors.Cast;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.thucydides.core.annotations.Managed;
+import org.hamcrest.Matchers;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
-import static com.tcs.trainingxi.userinterfaces.EditProfilePage.IMPUT_FIELD;
+import static com.tcs.trainingxi.userinterfaces.EditProfilePage.INPUT_FIELD;
 import static com.tcs.trainingxi.utils.constans.MessageException.FIELD_IS_ENABLED;
+import static com.tcs.trainingxi.utils.constans.MessageException.FIELD_IS_NOT_VISIBLE;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -51,8 +54,13 @@ public class UpdateProfileStepDefinition {
 
     @Then("^He cannot edit the fields of correo , tipo de documento y número de identificación$")
     public void heCannotEditTheFieldsOfCorreoTipoDeDocumentoYNúmeroDeIdentificación(List<String> target) {
-        OnStage.theActorInTheSpotlight().should(seeThat(Enabled.fields(IMPUT_FIELD.of(target.get(2))),
-                is(equalTo(target.get(3)))).orComplainWith(FieldIsEnabled.class, FIELD_IS_ENABLED));
+        OnStage.theActorInTheSpotlight().should(seeThat(Enabled.fields(INPUT_FIELD.of(target.get(2))),
+                is(equalTo(target.get(3)))).orComplainWith(FieldsExeption.class, FIELD_IS_ENABLED));
+    }
+    @Then("^He visualized all fields$")
+    public void heVisualizedAllFields(List<String> target) {
+        OnStage.theActorInTheSpotlight().should(seeThat(Field.isVisible(INPUT_FIELD.of(target.get(1))),
+                Matchers.is(Matchers.equalTo(true))).orComplainWith(FieldsExeption.class, FIELD_IS_NOT_VISIBLE));
     }
 
 }
