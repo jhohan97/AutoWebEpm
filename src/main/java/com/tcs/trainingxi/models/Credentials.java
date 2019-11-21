@@ -15,16 +15,8 @@ public class Credentials {
         return usserName;
     }
 
-    public void setUsserName(String usserName) {
-        this.usserName = usserName;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     @Override

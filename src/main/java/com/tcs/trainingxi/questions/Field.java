@@ -15,7 +15,6 @@ public class Field implements Question {
 
     @Override
     public Object answeredBy(Actor actor) {
-        System.out.println(Visibility.of(campo).viewedBy(actor).asBoolean());
         return Visibility.of(campo).viewedBy(actor).asBoolean();
     }
 

@@ -1,0 +1,6 @@
+id;names;lastNames;adress;telephone;celNumber
+1;Marco;Mayo;Falsa Calle321;2574413;
+2;Marco;Mayo;Falsa Calle321;;3042860564
+3;Marco;Mayo;;2574414;3042860566
+4;;Mayo;Falsa Calle3210;2574414;3042860566
+5;Marco Polo;Mayo;Falsa Calle3210;2574414;3042860566

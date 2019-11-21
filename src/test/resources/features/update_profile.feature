@@ -29,7 +29,7 @@ Feature: Update profile on EPM page
 
   Scenario Outline: Verify that the email fields, type of document and identification number are blocked or disabled for editing
     When  The user edits his profile
-    Then He cannot edit the fields of correo , tipo de documento y número de identificación
+    Then He cannot edit the fields of mail, document type and identification number
       | Field   | Atribute   |
       | <Field> | <Atribute> |
     Examples:
@@ -38,7 +38,7 @@ Feature: Update profile on EPM page
       | txtCorreo             | true     |
       | txtIdentificacion     | true     |
 
-  @this
+
   Scenario Outline:
   Validate that the size of the fields: Names, Surname, address, telephone, cell phone, alternative email, have the capacity requested in the acceptance criteria.
     When  The user edits his profile
@@ -53,5 +53,21 @@ Feature: Update profile on EPM page
       | txtTelefono      | 50       |
       | txtCelular       | 15       |
       | txtCorreoAlterno | 100      |
+
+@this
+  Scenario Outline:
+  Validate that if any mandatory field is not filled in and saved, an alert is displayed indicating that you must complete the fields.
+    When The user diligently edits the information
+      | id   |
+      | <id> |
+    Then He visualized a message indicanding that you must complete the fields.
+    Examples:
+      | id |
+      | 1  |
+      | 2  |
+      | 3  |
+      | 4  |
+
+
 
 

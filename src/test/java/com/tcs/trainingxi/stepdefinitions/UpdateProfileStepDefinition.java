@@ -2,12 +2,15 @@ package com.tcs.trainingxi.stepdefinitions;
 
 import com.tcs.trainingxi.exceptions.FieldsExeption;
 import com.tcs.trainingxi.models.Credentials;
+import com.tcs.trainingxi.models.UserData;
 import com.tcs.trainingxi.models.builders.CredentialsBuilder;
+import com.tcs.trainingxi.models.builders.UserDataBuilder;
 import com.tcs.trainingxi.questions.Enabled;
 import com.tcs.trainingxi.questions.Field;
 import com.tcs.trainingxi.questions.GetMaxLength;
 import com.tcs.trainingxi.task.Edit;
 import com.tcs.trainingxi.task.Login;
+import com.tcs.trainingxi.task.NavegateTo;
 import com.tcs.trainingxi.utils.PropsCsv;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -26,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.tcs.trainingxi.userinterfaces.EditProfilePage.INPUT_FIELD;
+import static com.tcs.trainingxi.userinterfaces.EditProfilePage.MESSAGE_REQUIRED;
 import static com.tcs.trainingxi.utils.constans.MessageException.*;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -35,6 +39,7 @@ import static org.hamcrest.Matchers.is;
 public class UpdateProfileStepDefinition {
 
     public static Credentials credentials;
+    public static UserData userData;
 
     @Managed
     private WebDriver hisBrowser;
@@ -55,11 +60,11 @@ public class UpdateProfileStepDefinition {
 
     @When("^The user edits his profile$")
     public void theUserEditsHisProfile() {
-        OnStage.theActorInTheSpotlight().attemptsTo(Edit.profile());
+        OnStage.theActorInTheSpotlight().attemptsTo(NavegateTo.editPage());
     }
 
-    @Then("^He cannot edit the fields of correo , tipo de documento y número de identificación$")
-    public void heCannotEditTheFieldsOfCorreoTipoDeDocumentoYNúmeroDeIdentificación(List<String> target) {
+    @Then("^He cannot edit the fields of mail, document type and identification number$")
+    public void heCannotEditTheFieldsOfMailDocumentTypeAndIdentificationNumber(List<String> target) {
         OnStage.theActorInTheSpotlight().should(seeThat(Enabled.fields(INPUT_FIELD.of(target.get(2))),
                 is(equalTo(target.get(3)))).orComplainWith(FieldsExeption.class, FIELD_IS_ENABLED));
     }
@@ -73,5 +78,18 @@ public class UpdateProfileStepDefinition {
     public void heCannotEnterMoreDataInTheFields(List<String> target) {
         OnStage.theActorInTheSpotlight().should(seeThat(GetMaxLength.field(INPUT_FIELD.of(target.get(2))),
                 is(equalTo(target.get(3)))).orComplainWith(FieldsExeption.class,FIELD_LENGHT));
+    }
+
+
+    @When("^The user diligently edits the information$")
+    public void theUserDiligentlyEditsTheInformation(List<Map<String,String>> userDataList)throws IOException {
+        OnStage.theActorInTheSpotlight().attemptsTo(NavegateTo.editPage());
+        userData = UserDataBuilder.userDataInformation(PropsCsv.getDataCsv("UserDataInformation",userDataList.get(0).get("id"))).build();
+        OnStage.theActorInTheSpotlight().wasAbleTo(Edit.profile(userData));
+    }
+
+    @Then("^He visualized a message indicanding that you must complete the fields\\.$")
+    public void heVisualizedAMessageIndicandingThatYouMustCompleteTheFields() {
+        OnStage.theActorInTheSpotlight().should(seeThat(Field.isVisible(MESSAGE_REQUIRED)));
     }
 }
