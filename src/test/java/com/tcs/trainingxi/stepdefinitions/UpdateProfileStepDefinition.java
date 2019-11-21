@@ -28,8 +28,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import static com.tcs.trainingxi.userinterfaces.EditProfilePage.INPUT_FIELD;
-import static com.tcs.trainingxi.userinterfaces.EditProfilePage.MESSAGE_REQUIRED;
+import static com.tcs.trainingxi.userinterfaces.EditProfilePage.*;
 import static com.tcs.trainingxi.utils.constans.MessageException.*;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -92,4 +91,10 @@ public class UpdateProfileStepDefinition {
     public void heVisualizedAMessageIndicandingThatYouMustCompleteTheFields() {
         OnStage.theActorInTheSpotlight().should(seeThat(Field.isVisible(MESSAGE_REQUIRED)));
     }
+
+    @Then("^He visualized a message indicanding that the information has been updated\\.$")
+    public void heVisualizedAMessageIndicandingThatTheInformationHasBeenUpdated() {
+        OnStage.theActorInTheSpotlight().should(seeThat(Field.isVisible(MESSAGE_SUCCES)));
+    }
+
 }

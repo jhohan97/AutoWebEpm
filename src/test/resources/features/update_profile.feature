@@ -54,7 +54,7 @@ Feature: Update profile on EPM page
       | txtCelular       | 15       |
       | txtCorreoAlterno | 100      |
 
-@this
+
   Scenario Outline:
   Validate that if any mandatory field is not filled in and saved, an alert is displayed indicating that you must complete the fields.
     When The user diligently edits the information
@@ -68,6 +68,11 @@ Feature: Update profile on EPM page
       | 3  |
       | 4  |
 
+  Scenario: Validate that when filling out all the fields and the button to save changes, a message is displayed indicating that the information was updated.
+    When The user diligently edits the information
+      | id |
+      | 5  |
+    Then He visualized a message indicanding that the information has been updated.
 
 
 

@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 @CucumberOptions(features = "src/test/resources/features/update_profile.feature",
                     snippets = SnippetType.CAMELCASE,
                     glue="com.tcs.trainingxi.stepdefinitions",
-                    dryRun = false,
-                    tags = "@this")
+                    dryRun = false)
 public class UpdateProfile {
 }

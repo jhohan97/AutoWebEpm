@@ -12,4 +12,7 @@ public class EditProfilePage {
 
     public static final Target MESSAGE_REQUIRED = Target.the("Message Required")
             .locatedBy("//*[@id='simple-modal-required']/div[2]/div");
+
+    public static final Target MESSAGE_SUCCES = Target.the("Message Succes")
+            .locatedBy("//span[text()='La información ingresada fue almacenada con éxito.']");
 }
