@@ -2,7 +2,6 @@ package com.tcs.trainingxi.models.builders;
 
 import com.tcs.trainingxi.models.UserData;
 import javafx.util.Builder;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

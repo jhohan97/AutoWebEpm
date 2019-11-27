@@ -38,7 +38,6 @@ Feature: Update profile on EPM page
       | txtCorreo             | true     |
       | txtIdentificacion     | true     |
 
-
   Scenario Outline:
   Validate that the size of the fields: Names, Surname, address, telephone, cell phone, alternative email, have the capacity requested in the acceptance criteria.
     When  The user edits his profile
@@ -53,7 +52,6 @@ Feature: Update profile on EPM page
       | txtTelefono      | 50       |
       | txtCelular       | 15       |
       | txtCorreoAlterno | 100      |
-
 
   Scenario Outline:
   Validate that if any mandatory field is not filled in and saved, an alert is displayed indicating that you must complete the fields.
@@ -73,6 +71,3 @@ Feature: Update profile on EPM page
       | id |
       | 5  |
     Then He visualized a message indicanding that the information has been updated.
-
-
-

@@ -6,14 +6,12 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
-
 import static com.tcs.trainingxi.userinterfaces.EditProfilePage.INPUT_FIELD;
 import static com.tcs.trainingxi.userinterfaces.EditProfilePage.SAVE_BUTTON;
 
 public class Edit implements Task {
 
     private UserData userData;
-
     public Edit(UserData userData) {
         this.userData = userData;
     }

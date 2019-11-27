@@ -4,7 +4,6 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 import net.serenitybdd.screenplay.targets.Target;
 
-
 public class GetMaxLength implements Question {
 
     private Target campo;
@@ -22,7 +21,4 @@ public class GetMaxLength implements Question {
     public static GetMaxLength field(Target campo){
         return new GetMaxLength(campo);
     }
-
-
-
 }

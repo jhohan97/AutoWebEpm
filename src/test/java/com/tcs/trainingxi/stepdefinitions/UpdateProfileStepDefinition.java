@@ -23,17 +23,14 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import net.thucydides.core.annotations.Managed;
 import org.hamcrest.Matchers;
 import org.openqa.selenium.WebDriver;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-
 import static com.tcs.trainingxi.userinterfaces.EditProfilePage.*;
 import static com.tcs.trainingxi.utils.constans.MessageException.*;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-
 
 public class UpdateProfileStepDefinition {
 
@@ -53,7 +50,7 @@ public class UpdateProfileStepDefinition {
 
     @Given("^The user login on the page$")
     public void theUserLoginOnThePage(List<Map<String,String>> credentialsList)throws IOException {
-        credentials= CredentialsBuilder.credentialInformation(PropsCsv.getDataCsv("Credentials",credentialsList.get(0).get("id"))).build();
+        credentials = CredentialsBuilder.credentialInformation(PropsCsv.getDataCsv("Credentials",credentialsList.get(0).get("id"))).build();
         OnStage.theActorInTheSpotlight().wasAbleTo(Login.inThePage(credentials));
     }
 
@@ -79,7 +76,6 @@ public class UpdateProfileStepDefinition {
                 is(equalTo(target.get(3)))).orComplainWith(FieldsExeption.class,FIELD_LENGHT));
     }
 
-
     @When("^The user diligently edits the information$")
     public void theUserDiligentlyEditsTheInformation(List<Map<String,String>> userDataList)throws IOException {
         OnStage.theActorInTheSpotlight().attemptsTo(NavegateTo.editPage());
@@ -96,5 +92,4 @@ public class UpdateProfileStepDefinition {
     public void heVisualizedAMessageIndicandingThatTheInformationHasBeenUpdated() {
         OnStage.theActorInTheSpotlight().should(seeThat(Field.isVisible(MESSAGE_SUCCES)));
     }
-
 }
