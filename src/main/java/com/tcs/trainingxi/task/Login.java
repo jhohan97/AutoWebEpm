@@ -20,8 +20,7 @@ public class Login implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        actor.attemptsTo(Click.on(PopuoComponent.INITIAL_POPUP),
-                Click.on(HomePage.PAY_CHECK_BUTTON),
+        actor.attemptsTo(Click.on(HomePage.PAY_CHECK_BUTTON),
                 ChangePage.in(Pages.FACTURA_WEB_EPM),
                 Click.on(WebCheckEpmPage.SEARCH_HERE),
                 ChangePage.in(Pages.FACTURA_WEB_EPM_INICIO),
