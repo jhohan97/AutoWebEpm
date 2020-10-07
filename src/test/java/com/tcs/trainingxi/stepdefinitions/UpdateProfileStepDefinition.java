@@ -16,6 +16,7 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.actors.Cast;
@@ -72,7 +73,7 @@ public class UpdateProfileStepDefinition {
 
     @Then("^He cannot enter more data in the fields$")
     public void heCannotEnterMoreDataInTheFields(List<String> target) {
-        OnStage.theActorInTheSpotlight().should(seeThat(GetMaxLength.field(INPUT_FIELD.of(target.get(2))),
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(GetMaxLength.field(INPUT_FIELD.of(target.get(2))),
                 is(equalTo(target.get(3)))).orComplainWith(FieldsExeption.class,FIELD_LENGHT));
     }
 

@@ -1,7 +1,8 @@
 package com.tcs.trainingxi.models.builders;
 
 import com.tcs.trainingxi.models.Credentials;
-import javafx.util.Builder;
+import org.apache.commons.lang3.builder.Builder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

@@ -10,31 +10,33 @@ public class UserData {
     private String celNumber;
 
     public UserData(UserDataBuilder userDataBuilder) {
-        this.names = userDataBuilder.getUserDataBuilder().get(0).getNames();
+
         this.lastNames = userDataBuilder.getUserDataBuilder().get(0).getLastNames();
+        this.names = userDataBuilder.getUserDataBuilder().get(0).getNames();
+        this.celNumber = userDataBuilder.getUserDataBuilder().get(0).getCelNumber();
         this.adress = userDataBuilder.getUserDataBuilder().get(0).getAdress();
         this.telephone = userDataBuilder.getUserDataBuilder().get(0).getTelephone();
-        this.celNumber = userDataBuilder.getUserDataBuilder().get(0).getCelNumber();
+
     }
 
-    public String getNames() {
-        return names;
+    public String getCelNumber() {
+        return celNumber;
     }
 
     public String getLastNames() {
         return lastNames;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getNames() {
+        return names;
     }
 
     public String getTelephone() {
         return telephone;
     }
 
-    public String getCelNumber() {
-        return celNumber;
+    public String getAdress() {
+        return adress;
     }
 
     @Override
